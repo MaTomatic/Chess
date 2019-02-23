@@ -14,12 +14,42 @@ struct Game {
     var guessedLetters: [Character]
     
     static var listOfWords = [
-        "Арбуз",
-        "Банан",
-        "Ватрушка",
-        "Гриб",
-        "Домик",
-        "Ель",
-        "Ёлка",
+        "Маск",
+        "Брин",
+        "Пейдж",
+        "Шмидт",
+        "Безос",
+        "Волож",
+        "Сегалович",
+        "Касперский",
+        "Гейтс",
+        "Джобс",
+        "Возняк",
+        "Быструев"
         ]
+    
+    var correctWord: String {
+        var result = ""
+        
+        for letter in word.lowercased() {
+            if guessedLetters.contains(letter) {
+                result += "\(letter)"
+            } else {
+                result += "_"
+            }
+        }
+        
+        return result
+    }
+    
+    mutating func guess(letter: String) {
+        let character = Character(letter.lowercased())
+        
+        guessedLetters += [character]
+        
+        if !word.lowercased().contains(character) {
+            incorrectMovesRemaining -= 1
+        }
+    }
+    
 }
